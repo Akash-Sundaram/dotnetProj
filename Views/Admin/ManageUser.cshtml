@@ -1,0 +1,25 @@
+@using System.Data;
+@model System.Data.DataTable;
+
+<head>
+</head>
+<body>
+    <table class="table-design" width=100% style="text-align: center;"  id='myTable'>
+        <thead class="thead-dark">
+            <tr height=40px >
+            <th scope="col" >User ID</th>
+            <th scope="col" >User name</th>
+            <th></th>
+        </thead>
+        @foreach (DataRow item in @Model.Rows)
+        {
+            <tbody class="tbody-light">
+                <tr height=50px>
+                <td>@item[0]</td>
+                <td>@item[1]</td>
+                <td><a href="@Url.Action("deleteUser", "Admin", new { userid = @item[0] })"><button>Remove</button></a></td>      
+                </tr>
+            </tbody>
+        }
+</table>
+</body>

@@ -1,0 +1,33 @@
+ @model IEnumerable<Userbook>;
+    @{
+        ViewData["Title"]="Index";
+    }
+
+
+
+<h1> List of users </h1>
+<table style="width:50%" border=2>
+    <thead>
+        <tr>
+             <th> UserID </th>
+            <th> Name </th>
+            <th> Book Name </th>          
+            <th> Book Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var userb in Model)
+        {        
+            <tr>
+                <td>@userb.UserID</td>
+                <td>@userb.Name</td>                
+                <td>@userb.BookName</td>               
+                <td>@userb.Bookprice</td>
+            </tr>
+        }
+    </tbody>
+</table> 
+@* <div class="mt-3">
+    <a asp-controller="user" asp-action="DeleteRecords"><button class="btn btn-outline-primary"> Delete</button></a>
+    <a asp-controller="user" asp-action="UpdateRecords"><button class="btn btn-outline-warning">Update</button></a>
+</div>  *@

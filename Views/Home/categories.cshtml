@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "categories";
+}
+<style>
+body {
+  background-image: url('https://images.wallpaperscraft.com/image/single/books_library_shelves_138556_2560x1440.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<div class="text-center">
+
+    <h4 class="display-4" style="color: rgb(255, 255, 255)"><b>Book list</b></h4>
+   
+</div>
+
+<div> 
+ <p><a class="btn btn-color" href="/Home/Usermodules">Back</a><input id='myInput' class="searchitem" onkeyup='searchSname()' type='text' style="float: right;" placeholder=" Search here" ></p>
+</div>
+<br>
+<table class="table-design" width=100% style="text-align: center;"  id='myTable'>
+  <thead class="thead-dark">
+    <tr height=40px >
+      <th scope="col" >Book ID</th>
+      <th scope="col" >Book name</th>
+      <th scope="col" >Author Name</th>
+      <th scope="col" >Book price</th>
+      <th scope="col" >Publications</th>
+      <th scope="col" >No. of copies</th>
+      <th scope="col" >Genre</th>
+      <th></th>
+      <th></th>
+  </thead>
+  @foreach (var item in Model)
+  {
+  <tbody class="tbody-light">
+    <tr height=50px>
+       <td >@item.ID</td>
+      <td >@item.BookName</td>
+      <td>@item.AuthorName</td>
+      <td>@item.Bookprice</td>
+      <td>@item.publisher_name</td>
+      <td>@item.no_of_copies</td>
+      <td>@item.genre</td>       
+    </tr>
+  </tbody>}
+</table>
+<style>
+.thead-dark{    
+background-color: rgba(0, 0, 0, 0.959);
+color: white;}
+.tbody-light{
+text-align:center;
+color:white;
+background-color: rgba(175, 175, 175, 0.459);}
+tr:hover{background-color: #615e5e;}
+a:link{
+text-decoration:none;
+color:white;}
+a:hover
+{
+color:rgb(0, 0, 0);}
+.btn-color {
+  color: rgb(255, 255, 255);
+  background-color:#cdcfcdc9;
+}
+.searchitem{
+    border-color:rgb(83, 83, 83) ;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;;
+}
+</style>
+<script>
+    function searchSname() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+</html>

@@ -1,0 +1,74 @@
+@model LibraryManagement.Models.User;
+@{
+    ViewData["Title"] = "SIgnup Page";
+}
+<div class="text-left">
+    <h1 class="display-7" style="color: rgb(255, 253, 251)">New User , Register here..</h1>
+</div>
+<style>
+body {
+  background-image: url('https://images.wallpaperscraft.com/image/single/books_library_shelves_138556_2560x1440.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+ <section class="vh-100 gradient-custom">
+   <div class="container py-1 h-100">
+     <div class="row d-flex justify-content-center align-items-center h-100">
+       <div class="col-5 col-md-8 col-lg-6 col-xl-5">
+         <div class="card bg-dark text-white" style="border-radius: 1rem;">
+           <div class="card-body p-5 text-center">
+
+
+               <h2 class="fw-bold mb-5 text-uppercase">Create an account</h2>
+
+               <form method="post">
+
+                 <div class="form-outline form-white mb-4">
+                  <input asp-for="Name" name="Name" type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  <label class="form-label" >Your Name</label>
+                 </div>
+
+                 <div class="form-outline form-white mb-4">
+                  <input asp-for="Email" name="Email" type="email" id="form3Example2cg" class="form-control form-control-lg" />
+                  <label class="form-label" >Your Email</label>
+                 </div>
+
+                <div class="form-outline form-white mb-4">
+                  <input asp-for="UserID" name="UserID" type="text" id="form3Example3cg" class="form-control form-control-lg" />
+                  <label class="form-label" >Your UserID</label>
+                 </div>
+
+                 <div class="form-outline form-white mb-4">
+                  <input asp-for="Password" name="Password" type="password" id="form3Example4cg" class="form-control form-control-lg" required />
+                  <label class="form-label" >Password</label>
+                  @Html.ValidationMessageFor((data => data.Password),"",new{@class ="text-danger"})
+                 </div>
+
+                 @* <div class="form-outline form-white mb-4">
+                  <input asp-for="Password" name="Password" type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                  <label class="form-label" >Confirm your password</label>
+                 </div> *@
+
+                 <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="http://localhost:5033/Home/Privacy" class="text-body"><u>Terms of service</u></a>
+                  </label>
+                 </div>
+
+                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
+
+                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="http://localhost:5033/Home/Login"
+                    class="text-white-50 fw-bold"><u>Login here</u></a></p>
+
+               </form>
+             </div>
+          </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+

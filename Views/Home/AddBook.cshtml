@@ -1,0 +1,159 @@
+@* @{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+body {
+  background-image: url('https://images.wallpaperscraft.com/image/single/books_library_shelves_138556_2560x1440.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<div> 
+ <p><a class="btn btn-color" href="/Home/categories">Back</a><input id='myInput' class="searchitem" onkeyup='searchSname()' type='text' style="float: right;" placeholder=" Search here" > <h2 style="color:rgb(255, 255, 255) ;text-align:center;">My Books</h2></p>
+</div>
+<br>
+<table class="table-design" width=100% style="text-align: center;"  id='myTable'>
+  <thead class="thead-dark">
+    <tr height=40px >
+      @* <th scope="col" >Book ID</th> 
+      <th scope="col" >User ID</th>
+      <th scope="col" >Book Name</th>
+      <th></th>
+      <th></th>
+  </thead>
+  @foreach (var item in Model)
+  {
+  <tbody class="tbody-light">
+    <tr height=50px>
+      <td >@item.BookID</td>
+      <td>@item.UserID</td>
+      <td>@item.BookName</td>
+       <td><a  class="btn btn-color" asp-action="Payment" asp-controller="Home" asp-route-bookid="@item.BookName">Pay</a></td>
+       @* <td><a  class="btn btn-danger" asp-action="RemoveBook" asp-controller="Home" asp-route-userid="@item.UserName" asp-route-empid="@item.EmployeeId">Remove</a></td> 
+    </tr>
+  </tbody>}
+</table>
+<style>
+.thead-dark{    
+background-color: rgba(0, 0, 0, 0.959);
+color: white;}
+.tbody-light{
+text-align:center;
+color:white;
+background-color: rgba(190, 183, 189, 0.3);}
+tr:hover{ opacity: 0.5 ;}
+a:link{
+text-decoration:none;
+color:white;}
+a:hover
+{
+color:red;}
+.btn-color {
+  color: rgb(255, 255, 255);
+  background-color: rgb(161, 158, 161);
+}
+.searchitem{
+    border-color:rgb(83, 83, 83) ;
+    background-color: rgb(238, 238, 233);
+    border-radius: 5px;;
+}
+</style>
+<script>
+    function searchSname() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+</html> *@
+@model Books
+@{
+    ViewData["Title"]="Registeration";
+}
+<style>
+body {
+  background-image: url('https://images.wallpaperscraft.com/image/single/books_library_shelves_138556_2560x1440.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+</style>
+<script>
+    var message='@TempData["Add"]';
+    if(message!='')
+    {
+        alert(message);
+    }
+</script>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-left">
+<head>
+    <Style>
+        label{
+            width: 40%;
+            color:rgb(255, 255, 255); 
+        }
+        button{
+            margin-left: 45.5%;
+        }
+    </Style>
+</head>
+<h2 style="color: rgb(255, 253, 251)">Book Registration</h2>
+<form method = "post">
+    <br>
+    <p>
+        <label asp-for="BookName">Title</label>
+        <input asp-for="BookName"/>
+    </p>
+    <p>
+        <label  asp-for="AuthorName" >Author</label>
+        <input asp-for="AuthorName"/>
+    </p>
+    <p>
+        <label asp-for="publisher_name">Publisher</label>
+        <input asp-for="publisher_name"/>
+    </p>
+    <p>
+        <label asp-for="Bookprice">Book Price</label>
+        <input asp-for="Bookprice"/>
+    </p>
+    <p>
+        <label asp-for="no_of_copies">No. of copies</label>
+        <input asp-for="no_of_copies"/>
+    </p>
+    <p>
+        <label asp-for="genre">Select Genre:</label>
+        <select asp-for="genre">
+            <option value="fantasy">fantasy</option>
+            <option value="romance">romance</option>
+            <option value="Sci Fi">Sci Fi</option>
+            <option value="horror">horror</option>
+        </select>
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+        <div></div><a href="/home/categories" role="button">Back</a><div>
+    </p>        
+</form>
